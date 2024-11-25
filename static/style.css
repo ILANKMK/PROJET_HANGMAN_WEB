@@ -1,0 +1,308 @@
+:root {
+    --easy-color: #4CAF50;
+    --medium-color: #2196F3;
+    --hard-color: #f44336;
+    --border-radius: 12px;
+    --main-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+    --text-light: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--main-bg);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    color: var(--text-light);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color);
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.level-selector {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: var(--accent-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.level-selector h2 {
+    margin: 0 0 20px 0;
+    color: var(--text-light);
+    font-size: 1.8em;
+    text-transform: uppercase;
+}
+
+.level-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.level-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.level-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.level-btn.easy {
+    background: linear-gradient(145deg, var(--easy-color), #45a049);
+}
+
+.level-btn.medium {
+    background: linear-gradient(145deg, var(--medium-color), #1976d2);
+}
+
+.level-btn.hard {
+    background: linear-gradient(145deg, var(--hard-color), #d32f2f);
+}
+
+.level-btn.active {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+.game-area {
+    text-align: center;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    background: var(--accent-color);
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.difficulty-badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.difficulty-badge.easy {
+    background: linear-gradient(145deg, var(--easy-color), #45a049);
+}
+
+.difficulty-badge.medium {
+    background: linear-gradient(145deg, var(--medium-color), #1976d2);
+}
+
+.difficulty-badge.hard {
+    background: linear-gradient(145deg, var(--hard-color), #d32f2f);
+}
+
+.hangman-art {
+    font-family: monospace;
+    text-align: left;
+    white-space: pre;
+    margin: 25px auto;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.2);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    border: 2px solid rgba(255,255,255,0.1);
+    color: var(--text-light);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+}
+
+.word {
+    font-size: 3.5em;
+    letter-spacing: 20px;
+    margin: 35px 0;
+    font-family: monospace;
+    color: var(--text-light);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.message {
+    font-size: 1.3em;
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+    color: var(--text-light);
+}
+
+.message.success {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: var(--easy-color);
+}
+
+.message.error {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: var(--hard-color);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--border-radius);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.tries {
+    font-size: 1.2em;
+}
+
+.tries-count {
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.guesses {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.guessed-letters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letter {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.input-section {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--border-radius);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+input[type="text"] {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    padding: 12px 20px;
+    border-radius: 25px;
+    color: var(--text-light);
+    font-size: 1.1em;
+    margin: 0 10px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--text-color);
+    box-shadow: 0 0 10px rgba(233,69,96,0.3);
+}
+
+.letter-input input[type="text"] {
+    width: 50px;
+    text-align: center;
+}
+
+.word-input input[type="text"] {
+    width: 200px;
+}
+
+button, .btn {
+    background: linear-gradient(145deg, var(--text-color), #d63851);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(233,69,96,0.4);
+}
+
+.game-over {
+    margin-top: 30px;
+}
+
+.new-game {
+    font-size: 1.2em;
+    padding: 15px 40px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.word {
+    animation: pulse 2s infinite;
+}
+
+.message.success, .message.error {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

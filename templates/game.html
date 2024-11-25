@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeu du Pendu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jeu du Pendu</h1>
+        
+        <div class="level-selector">
+            <h2>Choisissez votre niveau</h2>
+            <div class="level-buttons">
+                <a href="/level?level=easy" class="level-btn easy {{if eq .Level "easy"}}active{{end}}">Facile</a>
+                <a href="/level?level=medium" class="level-btn medium {{if eq .Level "medium"}}active{{end}}">Moyen</a>
+                <a href="/level?level=hard" class="level-btn hard {{if eq .Level "hard"}}active{{end}}">Difficile</a>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div class="difficulty-badge {{.Level}}">
+                Niveau: {{.Level}}
+            </div>
+            
+            <pre class="hangman-art">{{.HangmanArt}}</pre>
+            
+            <div class="word">{{.GuessedWord}}</div>
+            
+            <div class="message {{if .GameOver}}{{if .Won}}success{{else}}error{{end}}{{end}}">
+                {{.Message}}
+            </div>
+            
+            <div class="game-info">
+                <div class="tries">
+                    Essais restants: <span class="tries-count">{{.RemainingTries}}</span>
+                </div>
+                
+                <div class="guesses">
+                    Lettres essayées: 
+                    <div class="guessed-letters">
+                        {{range .Guesses}}
+                        <span class="letter">{{.}}</span>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            
+            {{if not .GameOver}}
+            <form method="POST" class="guess-form">
+                <div class="input-section">
+                    <div class="letter-input">
+                        <label>Deviner une lettre:</label>
+                        <input type="text" name="guess" maxlength="1" pattern="[A-Za-z]" autofocus>
+                        <button type="submit" class="btn">Deviner la lettre</button>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <div class="word-input">
+                        <label>Deviner le mot complet:</label>
+                        <input type="text" name="guess" pattern="[A-Za-z]+">
+                        <button type="submit" class="btn">Deviner le mot</button>
+                    </div>
+                </div>
+            </form>
+            {{else}}
+            <div class="game-over">
+                <a href="/level?level={{.Level}}" class="btn new-game">Nouvelle partie</a>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>
